@@ -1,10 +1,14 @@
-name: "my-website"
+name: "AoC2024"
 output_dir: ../docs
 exclude: ["Rmd"]
 navbar:
-  title: "My Website"
+  title: "AoC2024"
   left:
     - text: "Home"
       href: index.html
+    - text: "Daily Challenges"
+      menu:
+      - text: "Day 1"
+        href: day01.html
     - text: "About"
       href: about.html

@@ -1,5 +1,5 @@
 ---
-title: "My Website"
+title: "AoC2024"
 ---
 
-Hello, Website!
+Place home page info here.
