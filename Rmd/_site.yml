@@ -1,6 +1,9 @@
 name: "AoC2024"
+author: "E. Simms"
+date: "`r Sys.Date()`"
 output_dir: ../docs
 exclude: ["Rmd"]
+output: distill::distill_article
 navbar:
   title: "AoC2024"
   left:
@@ -12,3 +15,6 @@ navbar:
         href: day01.html
     - text: "About"
       href: about.html
+  right:
+    - icon: fab fa-github
+      href: https://github.com/esimms999/aoc2024
