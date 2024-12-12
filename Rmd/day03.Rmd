@@ -1,61 +1,61 @@
 ---
-title: "Day 1"
+title: "Day 3"
 ---
 
-Day 1 challenge code is placed here.
+[Day 3 challenge](https://adventofcode.com/2024/day/3)
 
 Setup:
 
-```{r setup_day01}
+```{r setup_day03}
+library("tidyverse")
+
 fn1 <- function(data_in) {
-  list1 <- sort(data_in$X1)
-  list2 <- sort(data_in$X4)
-  df1 <- tibble::tibble(list1, list2) |>
-    dplyr::mutate(diff = abs(list1 - list2)) 
-  ans <- sum(df1$diff)
+  vec1 <- str_extract_all(data_in,"mul\\(\\d+\\,\\d+\\)") 
+  
+  col1a <- unlist(str_extract_all(vec1, "\\d+\\,"))
+  col2a <- unlist(str_extract_all(vec1, "\\,\\d+"))
+  
+  col1b <- str_replace_all(col1a, ",", "")
+  col2b <- str_replace_all(col2a, ",", "")
+  
+  df1 <- tibble(col1 = col1b, col2 = col2b)
+  df2 <- df1 |>
+    mutate(col1n = as.numeric(col1),
+           col2n = as.numeric(col2),
+           product = col1n * col2n)
+  ans <- sum(df2$product)
 }
 
 fn2 <- function(data_in) {
-  list1 <- data_in |>
-    dplyr::select(X1)
-  list2 <- data_in |>
-    dplyr::select(X4) |>
-    dplyr::rename(X1 = X4)     
-  list2_freq <- list2 |>
-    dplyr::group_by(X1) |>
-    dplyr::mutate(freq = dplyr::n()) |>
-    dplyr::ungroup() |>
-    dplyr::distinct(X1, freq)
-  df2 <- dplyr::left_join(list1, list2_freq, by = "X1") |>
-    dplyr::mutate(similarity = X1 * freq) 
-  ans <- sum(df2$similarity, na.rm = TRUE)
+  data_in2 <- str_replace_all(data_in, "don't\\(\\).+do\\(\\)", "")
+  ans <- fn1(data_in2)
 }
 ```
 
 Part1 example:
 
-```{r day01_part1_example}
-ans <- fn1(readr::read_delim("../data/day01_01_example.txt", col_names = FALSE))
+```{r day03_part1_example}
+ans <- fn1(read_lines("../data/day03_01_example.txt"))
 print(cat("Part1 example: ", ans, "\n"))
 ```
 
 Part1:
 
-```{r day01_part1}
-ans <- fn1(readr::read_delim("../data/day01_01.txt", col_names = FALSE))
+```{r day03_part1}
+ans <- fn1(read_lines("../data/day03_01.txt"))
 print(cat("Part1: ", ans, "\n"))
 ```
 
 Part2 example:
 
-```{r day01_part2_example}
-ans <- fn2(readr::read_delim("../data/day01_01_example.txt", col_names = FALSE))
+```{r day03_part2_example}
+ans <- fn2(read_lines("../data/day03_01_example2.txt"))
 print(cat("Part2 example: ", ans, "\n"))
 ```
 
 Part2:
 
-```{r day01_part2}
-ans <- fn2(readr::read_delim("../data/day01_01.txt", col_names = FALSE))
+```{r day03_part2}
+ans <- fn2(read_lines("../data/day03_02.txt"))
 print(cat("Part2: ", ans, "\n"))
 ```
