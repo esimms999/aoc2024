@@ -1,0 +1,39 @@
+---
+title: "Day 13"
+---
+
+[Day 13 challenge](https://adventofcode.com/2024/day/13)
+
+Setup:
+
+```{r setup_day13}
+library("tidyverse")
+
+fn1 <- function(data_in) {
+  df1 <- data_in |> 
+    mutate(X4 = ifelse(str_sub(X1, 1, 1) == "P", X3, X4)) |>
+    mutate(X3 = ifelse(str_sub(X1, 1, 1) == "P", X2, X3)) |>
+    mutate(X2 = ifelse(str_sub(X1, 1, 1) == "P", "P", X2))
+}
+```
+
+Part1 example:
+
+```{r day09_part1_example_A}
+ans <- fn1(read_table("../data/day13_01_example.txt", col_names = FALSE))
+print("Part1 example: ")
+print(ans)
+```
+
+
+<!-- ```{r day09_part1_example_B} -->
+<!-- ans <- fn1(read_lines("../data/day09_01_example_B.txt")) -->
+<!-- print(cat("Part1 example B: ", ans, "\n")) -->
+<!-- ``` -->
+
+<!-- Part1: -->
+
+<!-- ```{r day09_part1} -->
+<!-- ans <- fn1(read_lines("../data/day09_01.txt")) -->
+<!-- print(cat("Part1: ", ans, "\n")) -->
+<!-- ``` -->
