@@ -1,0 +1,32 @@
+---
+title: "Day 23"
+---
+
+[Day 23 challenge](https://adventofcode.com/2024/day/23)
+
+Setup:
+
+```{r setup_day23}
+library("tidyverse")
+
+fn1 <- function(data_in) {
+  ans <- data_in |>
+    mutate(first = stringr::str_extract(X1, "^[a-z]+"),
+           second = stringr::str_remove(str_extract(X1, "-[a-z]+$"), "-"))
+}
+```
+
+Part1 example:
+
+```{r day23_part1_example}
+ans <- fn1(read_fwf("../data/day23_01_example.txt"))
+ans
+# print(cat("Part1 example A: ", ans, "\n"))
+```
+
+<!-- Part1: -->
+
+<!-- ```{r day09_part1} -->
+<!-- ans <- fn1(read_lines("../data/day09_01.txt")) -->
+<!-- print(cat("Part1: ", ans, "\n")) -->
+<!-- ``` -->

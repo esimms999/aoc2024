@@ -88,26 +88,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>AoC2024: Day 13</title>
+  <title>AoC2024: Day 23</title>
 
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="AoC2024: Day 13"/>
+  <meta property="og:title" content="AoC2024: Day 23"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="AoC2024"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="AoC2024: Day 13"/>
+  <meta property="twitter:title" content="AoC2024: Day 23"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Day 13"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Day 23"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2116,7 +2116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Day 13","authors":[]}
+{"title":"Day 23","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2151,7 +2151,7 @@ Daily Challenges
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Day 13</h1>
+<h1>Day 23</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
@@ -2160,63 +2160,49 @@ Daily Challenges
 
 
 <div class="d-article">
-<p><a href="https://adventofcode.com/2024/day/13">Day 13 challenge</a></p>
+<p><a href="https://adventofcode.com/2024/day/23">Day 23 challenge</a></p>
 <p>Setup:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://tidyverse.tidyverse.org'>"tidyverse"</a></span><span class='op'>)</span></span>
-<span><span class='va'>get_solution</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x1</span>, <span class='va'>y1</span>, <span class='va'>b1</span>, <span class='va'>x2</span>, <span class='va'>y2</span>, <span class='va'>b2</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span>  <span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>x1</span>, <span class='va'>y1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>x2</span>, <span class='va'>y2</span><span class='op'>)</span><span class='op'>)</span></span>
-<span>  <span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>b1</span>, <span class='va'>b2</span><span class='op'>)</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/r/base/solve.html'>solve</a></span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>B</span><span class='op'>)</span></span>
-<span><span class='op'>}</span></span>
 <span></span>
 <span><span class='va'>fn1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data_in</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span>  <span class='va'>df1</span> <span class='op'>&lt;-</span> <span class='va'>data_in</span> <span class='op'>|&gt;</span> </span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>X4 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_sub.html'>str_sub</a></span><span class='op'>(</span><span class='va'>X1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"P"</span>, <span class='va'>X3</span>, <span class='va'>X4</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>X3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_sub.html'>str_sub</a></span><span class='op'>(</span><span class='va'>X1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"P"</span>, <span class='va'>X2</span>, <span class='va'>X3</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>X2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_sub.html'>str_sub</a></span><span class='op'>(</span><span class='va'>X1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"P"</span>, <span class='st'>"P"</span>, <span class='va'>X2</span><span class='op'>)</span><span class='op'>)</span></span>
-<span>  <span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='va'>df1</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>row_num <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>ceiling</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/row_number.html'>row_number</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span>,</span>
-<span>           from_row <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_trim.html'>str_squish</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>X2</span>, <span class='st'>"[A-Z]"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span>  <span class='va'>df3</span> <span class='op'>&lt;-</span> <span class='va'>df2</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>X3</span>, <span class='st'>"[0-9]+"</span><span class='op'>)</span><span class='op'>)</span>,</span>
-<span>           y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>X4</span>, <span class='st'>"[0-9]+"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>X1</span>, <span class='op'>-</span><span class='va'>X2</span>, <span class='op'>-</span><span class='va'>X3</span>, <span class='op'>-</span><span class='va'>X4</span><span class='op'>)</span></span>
-<span>  <span class='va'>df4</span> <span class='op'>&lt;-</span> <span class='va'>df3</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>from_row</span>, values_from <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span></span>
-<span>    </span>
-<span>  <span class='va'>df5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>get_solution</span>, <span class='va'>df4</span><span class='op'>$</span><span class='va'>x_A</span>, <span class='va'>df4</span><span class='op'>$</span><span class='va'>x_B</span>, <span class='va'>df4</span><span class='op'>$</span><span class='va'>x_P</span>, <span class='va'>df4</span><span class='op'>$</span><span class='va'>y_A</span>, <span class='va'>df4</span><span class='op'>$</span><span class='va'>y_B</span>, <span class='va'>df4</span><span class='op'>$</span><span class='va'>y_P</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='va'>ans</span> <span class='op'>&lt;-</span> <span class='va'>data_in</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>first <span class='op'>=</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>X1</span>, <span class='st'>"^[a-z]+"</span><span class='op'>)</span>,</span>
+<span>           second <span class='op'>=</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>X1</span>, <span class='st'>"-[a-z]+$"</span><span class='op'>)</span>, <span class='st'>"-"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <p>Part1 example:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ans</span> <span class='op'>&lt;-</span> <span class='fu'>fn1</span><span class='op'>(</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_table.html'>read_table</a></span><span class='op'>(</span><span class='st'>"../data/day13_01_example.txt"</span>, col_names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Part1 example: "</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ans</span> <span class='op'>&lt;-</span> <span class='fu'>fn1</span><span class='op'>(</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_fwf.html'>read_fwf</a></span><span class='op'>(</span><span class='st'>"../data/day23_01_example.txt"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>ans</span></span></code></pre>
 </div>
-<pre><code>[1] &quot;Part1 example: &quot;</code></pre>
+<pre><code># A tibble: 32 × 3
+   X1    first second
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 kh-tc kh    tc    
+ 2 qp-kh qp    kh    
+ 3 de-cg de    cg    
+ 4 ka-co ka    co    
+ 5 yn-aq yn    aq    
+ 6 qp-ub qp    ub    
+ 7 cg-tb cg    tb    
+ 8 vc-aq vc    aq    
+ 9 tb-ka tb    ka    
+10 wh-tc wh    tc    
+# ℹ 22 more rows</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>ans</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># print(cat("Part1 example A: ", ans, "\n"))</span></span></code></pre>
 </div>
-<pre><code>         [,1]      [,2]
-[1,]  80.0000  40.00000
-[2,] 141.4045 135.39525
-[3,]  38.0000  86.00000
-[4,] 244.5016  65.56989</code></pre>
 </div>
-<!-- ```{r day09_part1_example_B} -->
-<!-- ans <- fn1(read_lines("../data/day09_01_example_B.txt")) -->
-<!-- print(cat("Part1 example B: ", ans, "\n")) -->
-<!-- ``` -->
 <!-- Part1: -->
 <!-- ```{r day09_part1} -->
 <!-- ans <- fn1(read_lines("../data/day09_01.txt")) -->
 <!-- print(cat("Part1: ", ans, "\n")) -->
 <!-- ``` -->
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
