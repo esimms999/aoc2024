@@ -1,0 +1,16 @@
+# Different way to import/setup data
+
+orig_file <- read_file("../data/day13_01_example.txt")
+
+edit_file <- str_replace_all(orig_file, c("Button A:" = "A", "Button B:" = "B", "Prize:" = "P"))
+
+write_file(edit_file, "../data/day13_01_example_a.txt")
+
+mydf <- read.table("../data/day13_01_example_a.txt", header = FALSE, stringsAsFactors=FALSE)
+
+mydf2 <- mydf |> 
+  mutate(x = as.integer(str_extract(V2, "\\d+")), y = as.integer(str_extract(V3, "\\d+"))) |> 
+  rename(rectype=V1) |>
+  select(rectype, x, y)
+
+mydf2
