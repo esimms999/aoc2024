@@ -1,2 +1,5 @@
  input <- strsplit(readr::read_file("data/day13_01_example_a.txt"), "\n\n")[[1]] |> 
      lapply(\(x) strsplit(x, "\n")[[1]])
+
+
+See: https://github.com/AdroMine/AdventOfCode/blob/main/2024/Day13/solution.R
