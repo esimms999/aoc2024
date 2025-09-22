@@ -1,0 +1,61 @@
+---
+title: "Day 1"
+---
+
+Day 1 challenge code is placed here.
+
+Setup:
+
+```{r setup_day01}
+fn1 <- function(data_in) {
+  list1 <- sort(data_in$X1)
+  list2 <- sort(data_in$X4)
+  df1 <- tibble::tibble(list1, list2) |>
+    dplyr::mutate(diff = abs(list1 - list2)) 
+  ans <- sum(df1$diff)
+}
+
+fn2 <- function(data_in) {
+  list1 <- data_in |>
+    dplyr::select(X1)
+  list2 <- data_in |>
+    dplyr::select(X4) |>
+    dplyr::rename(X1 = X4)     
+  list2_freq <- list2 |>
+    dplyr::group_by(X1) |>
+    dplyr::mutate(freq = dplyr::n()) |>
+    dplyr::ungroup() |>
+    dplyr::distinct(X1, freq)
+  df2 <- dplyr::left_join(list1, list2_freq, by = "X1") |>
+    dplyr::mutate(similarity = X1 * freq) 
+  ans <- sum(df2$similarity, na.rm = TRUE)
+}
+```
+
+Part1 example:
+
+```{r day01_part1_example}
+ans <- fn1(readr::read_delim("../data/day01_01_example.txt", col_names = FALSE))
+print(cat("Part1 example: ", ans, "\n"))
+```
+
+Part1:
+
+```{r day01_part1}
+ans <- fn1(readr::read_delim("../data/day01_01.txt", col_names = FALSE))
+print(cat("Part1: ", ans, "\n"))
+```
+
+Part2 example:
+
+```{r day01_part2_example}
+ans <- fn2(readr::read_delim("../data/day01_01_example.txt", col_names = FALSE))
+print(cat("Part2 example: ", ans, "\n"))
+```
+
+Part2:
+
+```{r day01_part2}
+ans <- fn2(readr::read_delim("../data/day01_01.txt", col_names = FALSE))
+print(cat("Part2: ", ans, "\n"))
+```

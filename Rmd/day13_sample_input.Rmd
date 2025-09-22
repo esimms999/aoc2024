@@ -1,0 +1,24 @@
+First example: See: https://github.com/AdroMine/AdventOfCode/blob/main/2024/Day13/solution.R
+ 
+```{r multi-line_example_01}
+input <- strsplit(readr::read_file("../data/day13_01_example_a.txt"), "\n\n")[[1]] |> 
+     lapply(\(x) strsplit(x, "\n")[[1]])
+input
+```
+
+Second example: See: https://github.com/JerBoon/aoc2024/blob/main/13.R
+ 
+```{r multi-line_example_02}
+dat <- readLines("../data/day13_01_example_a.txt")
+
+# We have a format with groups of 6 numbers repeating, so let's just smudge
+# all the input together and split out the #s
+
+nums <- strsplit(paste(dat,collapse=" "),split="[^0-9]+")[[1]]
+nums <- as.numeric(nums[2:length(nums)] )
+df <- as.data.frame(matrix(nums,ncol=6,byrow=T))
+df
+```
+
+
+

@@ -1,0 +1,60 @@
+---
+title: "Day 13"
+---
+
+[Day 13 challenge](https://adventofcode.com/2024/day/13)
+
+Setup:
+
+```{r setup_day13}
+library("tidyverse")
+get_solution <- function(x1, y1, b1, x2, y2, b2) {
+  A <- rbind(c(x1, y1), c(x2, y2))
+  B <- c(b1, b2)
+  solve(A, B)
+}
+
+fn1 <- function(data_in) {
+  df1 <- data_in |> 
+    mutate(X4 = ifelse(str_sub(X1, 1, 1) == "P", X3, X4)) |>
+    mutate(X3 = ifelse(str_sub(X1, 1, 1) == "P", X2, X3)) |>
+    mutate(X2 = ifelse(str_sub(X1, 1, 1) == "P", "P", X2))
+  df2 <- df1 |>
+    mutate(row_num = ceiling(row_number() / 3),
+           from_row = str_squish(str_extract(X2, "[A-Z]")))
+  df3 <- df2 |>
+    mutate(x = as.integer(str_extract(X3, "[0-9]+")),
+           y = as.integer(str_extract(X4, "[0-9]+"))) |>
+    select(-X1, -X2, -X3, -X4)
+  df4 <- df3 |>
+    pivot_wider(names_from = from_row, values_from = c(x, y))
+    
+  df5 <- t(mapply(
+    get_solution, df4$x_A, df4$x_B, df4$x_P, df4$y_A, df4$y_B, df4$y_P))
+}
+```
+
+
+
+
+
+Part1 example:
+
+```{r day09_part1_example_A}
+ans <- fn1(read_table("../data/day13_01_example.txt", col_names = FALSE))
+print("Part1 example: ")
+print(ans)
+```
+
+
+<!-- ```{r day09_part1_example_B} -->
+<!-- ans <- fn1(read_lines("../data/day09_01_example_B.txt")) -->
+<!-- print(cat("Part1 example B: ", ans, "\n")) -->
+<!-- ``` -->
+
+<!-- Part1: -->
+
+<!-- ```{r day09_part1} -->
+<!-- ans <- fn1(read_lines("../data/day09_01.txt")) -->
+<!-- print(cat("Part1: ", ans, "\n")) -->
+<!-- ``` -->
